@@ -1,0 +1,12 @@
+{
+  "name": "odin-battleship",
+  "version": "1.0.0",
+  "description": "This project is part of the JavaScript course from [The Odin Project website](https://www.theodinproject.com)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
