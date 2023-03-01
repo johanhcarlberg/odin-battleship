@@ -1,3 +1,5 @@
-export function ShipFactory() {
-    return {}
+export function ShipFactory(length = 2) {
+    return {
+        length: length
+    }
 }
