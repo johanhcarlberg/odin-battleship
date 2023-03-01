@@ -14,3 +14,8 @@ test('returns number of times ship has been hit', () => {
     const ship = ShipFactory();
     expect(ship.timesHit).toBe(0);
 })
+
+test('returns ship state property', () => {
+    const ship = ShipFactory();
+    expect(ship.isAlive).toBe(true);
+})
