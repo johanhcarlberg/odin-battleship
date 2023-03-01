@@ -11,3 +11,11 @@ test('can create gameboard with specified length', () => {
     let gameBoard = GameboardFactory(length);
     expect(gameBoard.getBoard()).toHaveLength(length * length);
 })
+
+test('can get array index from x and y coordinates', () => {
+    let gameBoard = GameboardFactory(10);
+    expect(gameBoard.getPos(0, 0)).toBe(0);
+    expect(gameBoard.getPos(0, 1)).toBe(10);
+    expect(gameBoard.getPos(0, 2)).toBe(20);
+    expect(gameBoard.getPos(5, 1)).toBe(15);
+})
