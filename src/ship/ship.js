@@ -5,10 +5,6 @@ export const ShipFactory = (shipLength = 2) => {
     let length = shipLength;
     const getLength = () => length;
 
-    const _destroy = () => {
-        isAlive = false;
-    }
-
     const hit = () => {
         timesHit++;
     }
