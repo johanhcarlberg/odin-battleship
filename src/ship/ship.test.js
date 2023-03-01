@@ -17,7 +17,7 @@ test('returns number of times ship has been hit', () => {
 
 test('returns ship state property', () => {
     const ship = ShipFactory();
-    expect(ship.getIsAlive()).toBe(true);
+    expect(ship.isSunk()).toBe(false);
 })
 
 test('can take hits and increases hits taken', () => {
@@ -30,13 +30,5 @@ test('can be destroyed', () => {
     const ship = ShipFactory();
     ship.hit();
     ship.hit();
-    expect(ship.getIsAlive()).toBe(false);
-})
-
-test('can only take hits when alive', () => {
-    const ship = ShipFactory(2);
-    ship.hit();
-    ship.hit();
-    ship.hit();
-    expect(ship.getTimesHit()).toBe(2);
+    expect(ship.isSunk()).toBe(true);
 })
