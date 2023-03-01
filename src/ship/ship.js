@@ -1,7 +1,4 @@
 export const ShipFactory = (shipLength = 2) => {
-    let isAlive = true;
-    const getIsAlive = () => isAlive;
-
     let timesHit = 0;
     const getTimesHit = () => timesHit;
 
@@ -13,18 +10,17 @@ export const ShipFactory = (shipLength = 2) => {
     }
 
     const hit = () => {
-        if (!isAlive) {
-            return;
-        }
         timesHit++;
-        if (timesHit >= length) {
-            _destroy();
-        }
     }
+
+    const isSunk = () => {
+        return timesHit >= length;
+    }
+
     return {
         getTimesHit,
         getLength,
-        getIsAlive,
         hit,
+        isSunk,
     }
 }
