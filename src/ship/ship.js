@@ -13,6 +13,9 @@ export const ShipFactory = (shipLength = 2) => {
     }
 
     const hit = () => {
+        if (!isAlive) {
+            return;
+        }
         timesHit++;
         if (timesHit >= length) {
             _destroy();
