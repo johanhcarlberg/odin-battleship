@@ -7,6 +7,7 @@ test('can create gameboard', () => {
 });
 
 test('can create gameboard with specified length', () => {
-    let gameBoard = GameboardFactory(10);
-    expect(gameBoard.getBoard()).toHaveLength(100);
+    const length = 12;
+    let gameBoard = GameboardFactory(length);
+    expect(gameBoard.getBoard()).toHaveLength(length * length);
 })
