@@ -19,3 +19,9 @@ test('returns ship state property', () => {
     const ship = ShipFactory();
     expect(ship.isAlive).toBe(true);
 })
+
+test('can take hits and increases hits taken', () => {
+    const ship = ShipFactory();
+    ship.hit();
+    expect(ship.timesHit).toBe(1);
+})
