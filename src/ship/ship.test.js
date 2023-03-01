@@ -32,3 +32,11 @@ test('can be destroyed', () => {
     ship.hit();
     expect(ship.getIsAlive()).toBe(false);
 })
+
+test('can only take hits when alive', () => {
+    const ship = ShipFactory(2);
+    ship.hit();
+    ship.hit();
+    ship.hit();
+    expect(ship.getTimesHit()).toBe(2);
+})
