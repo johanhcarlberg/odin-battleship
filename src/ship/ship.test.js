@@ -32,3 +32,11 @@ test('can be destroyed', () => {
     ship.hit();
     expect(ship.isSunk()).toBe(true);
 })
+
+test('only takes hit when not sunk', () => {
+    const ship = ShipFactory();
+    ship.hit();
+    ship.hit();
+    ship.hit();
+    expect(ship.getTimesHit()).toBe(2);
+})

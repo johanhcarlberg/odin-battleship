@@ -6,6 +6,9 @@ export const ShipFactory = (shipLength = 2) => {
     const getLength = () => length;
 
     const hit = () => {
+        if (isSunk()) {
+            return;
+        }
         timesHit++;
     }
 
