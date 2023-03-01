@@ -25,3 +25,10 @@ test('can take hits and increases hits taken', () => {
     ship.hit();
     expect(ship.timesHit).toBe(1);
 })
+
+test('can be destroyed', () => {
+    const ship = ShipFactory();
+    ship.hit();
+    ship.hit();
+    expect(ship.isAlive).toBe(false);
+})
