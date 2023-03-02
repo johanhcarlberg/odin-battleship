@@ -39,6 +39,8 @@ test('can receive attacks', () => {
     expect(missedShots[1]).toEqual([1,1]);
 })
 
+
+
 test('ship receives attack', () => {
     let gameBoard = GameboardFactory(10);
     gameBoard.placeShip(2, {x: 0, y: 0});
@@ -46,4 +48,26 @@ test('ship receives attack', () => {
     let pos = gameBoard.getPos(0, 0);
     const ship = gameBoard.getBoard()[pos];
     expect(ship.getTimesHit()).toBe(1);
+})
+
+test('check if single ship is sunk', () => {
+    let gameBoard = GameboardFactory(10);
+    gameBoard.placeShip(2, {x: 0, y: 0});
+    expect(gameBoard.isAllSunk()).toBe(false);
+    gameBoard.receiveAttack(0,0);
+    gameBoard.receiveAttack(1,0);
+    expect(gameBoard.isAllSunk()).toBe(true);
+})
+
+test('check if multiple ships are sunk', () => {
+    let gameBoard = GameboardFactory(10);
+    gameBoard.placeShip(2, {x: 0, y: 0});
+    gameBoard.placeShip(2, {x: 0, y: 1});
+    expect(gameBoard.isAllSunk()).toBe(false);
+    gameBoard.receiveAttack(0,0);
+    gameBoard.receiveAttack(1,0);
+    expect(gameBoard.isAllSunk()).toBe(false);
+    gameBoard.receiveAttack(0,1);
+    gameBoard.receiveAttack(1,1);
+    expect(gameBoard.isAllSunk()).toBe(true);
 })
