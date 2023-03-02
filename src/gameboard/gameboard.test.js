@@ -50,6 +50,16 @@ test('ship receives attack', () => {
     expect(ship.getTimesHit()).toBe(1);
 })
 
+test('ship cannot receive multiple attacks on same position', () => {
+    let gameBoard = GameboardFactory(10);
+    gameBoard.placeShip(2, {x: 0, y: 0});
+    gameBoard.receiveAttack(0, 0);
+    gameBoard.receiveAttack(0, 0);
+    let pos = gameBoard.getPos(0, 0);
+    const ship = gameBoard.getBoard()[pos];
+    expect(ship.getTimesHit()).toBe(1);
+})
+
 test('check if single ship is sunk', () => {
     let gameBoard = GameboardFactory(10);
     gameBoard.placeShip(2, {x: 0, y: 0});
