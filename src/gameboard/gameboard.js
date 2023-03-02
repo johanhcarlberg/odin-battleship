@@ -50,11 +50,23 @@ export const GameboardFactory = (boardLength = 10) => {
         _setBoard(newBoard);
         return board;
     }
+
+    const isAllSunk = () => {
+        for (const pos of board) {
+            if(pos && pos.isSunk) {
+                if (!pos.isSunk()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     return {
         getBoard,
         getPos,
         placeShip,
         receiveAttack,
-        getMissedShots
+        getMissedShots,
+        isAllSunk,
     }
 }
