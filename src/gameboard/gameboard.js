@@ -3,7 +3,9 @@ import { ShipFactory } from "../ship/ship";
 export const GameboardFactory = (boardLength = 10) => {
     const length = boardLength;
     const missedShots = [];
+    const hits = [];
     const getMissedShots = ()  => missedShots;
+    const getHits = () => hits;
 
     const createBoard = () => {
         let totalLength = length * length;
@@ -26,16 +28,36 @@ export const GameboardFactory = (boardLength = 10) => {
         index = data;
     }
 
-    const receiveAttack = (x, y) => {
-        const ship = board[getPos(x,y)];
-        if (ship && ship.hit) {
-            ship.hit();
-        } else {
-            missedShots.push([x, y]);
-        }
+    const _hitExists = (pos) => {
+        const posString = JSON.stringify(pos);
+        let containsHits = hits.some((e) => {
+            return JSON.stringify(e) === posString;
+        })
+        return containsHits;
     }
 
-    
+    const _missExists = (pos) => {
+        const posString = JSON.stringify(pos);
+        let containsMiss = missedShots.some((e) => {
+            return JSON.stringify(e) === posString;
+        })
+        return containsMiss;
+    }
+
+    const receiveAttack = (x, y) => {
+        const pos = [x, y];
+        if (_hitExists(pos) || _missExists(pos)) {
+            return;
+        }
+        
+        const ship = board[getPos(x,y)];
+        if (ship && ship.hit) {
+            hits.push(pos);
+            ship.hit();
+        } else {
+            missedShots.push(pos);
+        }
+    }
 
     const placeShip = (size, pos) => {
         const x = pos.x;
@@ -68,5 +90,6 @@ export const GameboardFactory = (boardLength = 10) => {
         receiveAttack,
         getMissedShots,
         isAllSunk,
+        getHits,
     }
 }
