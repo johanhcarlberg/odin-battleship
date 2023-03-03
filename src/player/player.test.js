@@ -12,6 +12,12 @@ test('player has gameboard', () => {
     expect(player.gameBoard.getBoard().length).toBe(100);
 })
 
+test('AI player has gameboard', () => {
+    const aiPlayer = AIPlayer();
+    expect(aiPlayer.gameBoard).toBeDefined();
+    expect(aiPlayer.gameBoard.getBoard().length).toBe(100);
+})
+
 test('AI player can generate attacks', () => {
     const aiPlayer = AIPlayer();
     expect(aiPlayer.getNextAttack).toBeDefined();
