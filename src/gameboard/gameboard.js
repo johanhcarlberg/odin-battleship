@@ -115,11 +115,11 @@ export const GameboardFactory = (boardLength = 10) => {
     }
 
     const _getValidRandomShipPosition = (size) => {
-        let x = Math.floor(Math.random() * length - size);
-        let y = Math.floor(Math.random() * length - 1);
+        let x = Math.floor((Math.random() * length));
+        let y = Math.floor(Math.random() * length);
         while(!_isShipPositionValid(size, {x, y})) {
-            x = Math.floor(Math.random() * length - size);
-            y = Math.floor(Math.random() * length - 1);
+            x = Math.floor((Math.random() * length));
+            y = Math.floor(Math.random() * length);
         }
         return {x, y};
     }
