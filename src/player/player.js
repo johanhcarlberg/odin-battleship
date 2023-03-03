@@ -8,7 +8,7 @@ export const Player = () => {
     };
 }
 
-const isAIPlayer = () => {
+const isAIPlayer = (player = {}) => {
     const getNextAttack = () => {
         let x = Math.floor(Math.random() * (Math.pow(10, 2)))
         let y = Math.floor(Math.random() * (Math.pow(10, 2)))
@@ -20,11 +20,14 @@ const isAIPlayer = () => {
     }
 
     return {
+        ...player,
         getNextAttack
     }
 }
 
-export const AIPlayer = pipe(
-    Player,
+export const AIPlayer = () => {
+    const player = Player();
+    return pipe(
     isAIPlayer
-);
+    )(player)
+}
