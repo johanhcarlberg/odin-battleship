@@ -29,7 +29,11 @@ test('can place ships', () => {
     expect(newBoard[1].getLength()).toBe(2);
 })
 
-
+test('can not place multiple ships on same position', () => {
+    let gameBoard = GameboardFactory(10);
+    gameBoard.placeShip(2, {x: 0, y: 0});
+    expect(() => gameBoard.placeShip(2, {x: 0, y: 0})).toThrow();
+})
 
 test('can receive attacks', () => {
     let gameBoard = GameboardFactory(10);
