@@ -35,6 +35,11 @@ test('can not place multiple ships on same position', () => {
     expect(() => gameBoard.placeShip(2, {x: 0, y: 0})).toThrow();
 })
 
+test('can not place ship outside of board', () => {
+    let gameBoard = GameboardFactory(10);
+    expect(() => gameBoard.placeShip(2, {x: 11, y: 0})).toThrow();
+})
+
 test('can receive attacks', () => {
     let gameBoard = GameboardFactory(10);
     gameBoard.receiveAttack(0, 0);
