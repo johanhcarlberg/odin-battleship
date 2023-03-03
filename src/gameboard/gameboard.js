@@ -49,7 +49,7 @@ export const GameboardFactory = (boardLength = 10) => {
         if (_hitExists(pos) || _missExists(pos)) {
             return;
         }
-        
+
         const ship = board[getPos(x,y)];
         if (ship && ship.hit) {
             hits.push(pos);
@@ -63,6 +63,9 @@ export const GameboardFactory = (boardLength = 10) => {
         const x = pos.x;
         const y = pos.y;
         const startIndex = getPos(x, y);
+        if (!_isShipPositionValid(size, pos)) {
+            throw new Error('Position already has ship');
+        }
         let ship = ShipFactory(size);
         let newBoard = getBoard();
         for(let i = 0; i < ship.getLength(); i++) {
@@ -71,6 +74,21 @@ export const GameboardFactory = (boardLength = 10) => {
 
         _setBoard(newBoard);
         return board;
+    }
+
+    const _isShipPositionValid = (size, pos) => {
+        for (let i = 0; i < size; i++) {
+            let x = pos.x + i;
+            let y = pos.y + i;
+            if (x > length - 1 || y > length - 1) {
+                return false;
+            }
+            let boardIndex = getPos(pos.x + i, pos.y);
+            if (getBoard()[boardIndex]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     const isAllSunk = () => {
@@ -83,6 +101,12 @@ export const GameboardFactory = (boardLength = 10) => {
         }
         return true;
     }
+
+    const generateBoard = () => {
+        const shipsToCreate = [2, 2, 2, 3, 3, 4];
+
+        return [];
+    }
     return {
         getBoard,
         getPos,
@@ -91,5 +115,6 @@ export const GameboardFactory = (boardLength = 10) => {
         getMissedShots,
         isAllSunk,
         getHits,
+        generateBoard
     }
 }
