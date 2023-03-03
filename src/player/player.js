@@ -15,6 +15,7 @@ const isAIPlayer = () => {
         return {
             x,
             y,
+            isAI: true,
         }
     }
 

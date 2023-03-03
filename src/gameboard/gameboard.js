@@ -104,8 +104,24 @@ export const GameboardFactory = (boardLength = 10) => {
 
     const generateBoard = () => {
         const shipsToCreate = [2, 2, 2, 3, 3, 4];
+        const shipsCreated = [];
+        while (shipsToCreate.length > 0) {
+            const newShipSize = shipsToCreate.shift();
+            const newShipPos = _getValidRandomShipPosition(newShipSize);
+            placeShip(newShipSize, newShipPos);
+            shipsCreated.push({x: newShipPos.x, y: newShipPos.y});
+        }
+        return shipsCreated;
+    }
 
-        return [];
+    const _getValidRandomShipPosition = (size) => {
+        let x = Math.floor(Math.random() * length - size);
+        let y = Math.floor(Math.random() * length - 1);
+        while(!_isShipPositionValid(size, {x, y})) {
+            x = Math.floor(Math.random() * length - size);
+            y = Math.floor(Math.random() * length - 1);
+        }
+        return {x, y};
     }
     return {
         getBoard,

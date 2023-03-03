@@ -38,6 +38,8 @@ test('can not place multiple ships on same position', () => {
 test('can not place ship outside of board', () => {
     let gameBoard = GameboardFactory(10);
     expect(() => gameBoard.placeShip(2, {x: 11, y: 0})).toThrow();
+    expect(() => gameBoard.placeShip(2, {x: 9, y: 0})).toThrow();
+    expect(() => gameBoard.placeShip(2, {x: 8, y: 0})).not.toThrow();
 })
 
 test('can receive attacks', () => {
@@ -97,5 +99,6 @@ test('can generate a gameboard automatically', () => {
     const ships = gameBoard.generateBoard();
     expect(ships).toBeDefined();
     expect(ships.length).toBeGreaterThan(0);
-    expect(ships[0].ship).toBeDefined();
+    expect(ships[0].x).toBeDefined();
+    expect(ships[0].y).toBeDefined();
 })
