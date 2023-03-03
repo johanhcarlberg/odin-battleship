@@ -29,6 +29,8 @@ test('can place ships', () => {
     expect(newBoard[1].getLength()).toBe(2);
 })
 
+
+
 test('can receive attacks', () => {
     let gameBoard = GameboardFactory(10);
     gameBoard.receiveAttack(0, 0);
@@ -38,8 +40,6 @@ test('can receive attacks', () => {
     missedShots = gameBoard.getMissedShots();
     expect(missedShots[1]).toEqual([1,1]);
 })
-
-
 
 test('ship receives attack', () => {
     let gameBoard = GameboardFactory(10);
@@ -80,4 +80,13 @@ test('check if multiple ships are sunk', () => {
     gameBoard.receiveAttack(0,1);
     gameBoard.receiveAttack(1,1);
     expect(gameBoard.isAllSunk()).toBe(true);
+})
+
+test('can generate a gameboard automatically', () => {
+    let gameBoard = GameboardFactory(10);
+    expect(gameBoard.generateBoard).toBeDefined();
+    const ships = gameBoard.generateBoard();
+    expect(ships).toBeDefined();
+    expect(ships.length).toBeGreaterThan(0);
+    expect(ships[0].ship).toBeDefined();
 })
