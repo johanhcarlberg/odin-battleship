@@ -14,6 +14,12 @@ export class GameboardComponent {
             const gameboardItem = document.createElement('div');
             gameboardItem.classList.add('gameboard-item');
             gameboardItem.textContent = i;
+            gameboardItem.position = i;
+
+            gameboardItem.addEventListener('click', (e) => {
+                const position = e.currentTarget.position;
+                console.log('clicked ' + position);
+            })
 
             if (boardItems[i]) {
                 gameboardItem.classList.add('ship');
