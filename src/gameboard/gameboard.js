@@ -123,6 +123,14 @@ export const GameboardFactory = (boardLength = 10) => {
         }
         return {x, y};
     }
+
+    const getCoordsFromIndex = (index) => {
+        const x = index % length;
+        const y = Math.floor(index / length);
+
+        return [x, y];
+    }
+
     return {
         getBoard,
         getPos,
@@ -131,6 +139,7 @@ export const GameboardFactory = (boardLength = 10) => {
         getMissedShots,
         isAllSunk,
         getHits,
-        generateBoard
+        generateBoard,
+        getCoordsFromIndex
     }
 }

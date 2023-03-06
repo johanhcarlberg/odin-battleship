@@ -102,3 +102,10 @@ test('can generate a gameboard automatically', () => {
     expect(ships[0].x).toBeDefined();
     expect(ships[0].y).toBeDefined();
 })
+
+test('can get x,y from index', () => {
+    let gameBoard = GameboardFactory();
+    expect(gameBoard.getCoordsFromIndex(99)).toEqual([9,9]);
+    expect(gameBoard.getCoordsFromIndex(23)).toEqual([3,2]);
+    expect(gameBoard.getCoordsFromIndex(0)).toEqual([0,0]);
+});
