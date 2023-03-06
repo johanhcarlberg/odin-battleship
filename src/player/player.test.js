@@ -27,3 +27,22 @@ test('AI player can generate attacks', () => {
     expect(firstAttack.x).toBeGreaterThan(0);
     expect(firstAttack.x).toBeLessThan(100);
 })
+
+test('can get current player status', () => {
+    const player = Player();
+    expect(player.getIsCurrentPlayer()).toBe(false);
+})
+
+test('can set current player status', () => {
+    const player = Player();
+    expect(player.getIsCurrentPlayer()).toBe(false);
+    player.setIsCurrentPlayer(true);
+    expect(player.getIsCurrentPlayer()).toBe(true);
+})
+
+test('can toggle current player status', () => {
+    const player = Player();
+    expect(player.getIsCurrentPlayer()).toBe(false);
+    player.toggleIsCurrentPlayer();
+    expect(player.getIsCurrentPlayer()).toBe(true);
+})
