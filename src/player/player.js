@@ -2,9 +2,16 @@ import { GameboardFactory } from "../gameboard/gameboard";
 import { pipe } from "rambda";
 
 export const Player = () => {
-    let gameBoard = GameboardFactory()
+    let gameBoard = GameboardFactory();
+    let isCurrentPlayer = false;
+    const getIsCurrentPlayer = () => isCurrentPlayer;
+    const setIsCurrentPlayer = (status) => isCurrentPlayer = status;
+    const toggleIsCurrentPlayer = () => setIsCurrentPlayer(!isCurrentPlayer);
     return {
         gameBoard,
+        getIsCurrentPlayer,
+        setIsCurrentPlayer,
+        toggleIsCurrentPlayer,
     };
 }
 
