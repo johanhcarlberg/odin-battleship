@@ -9,8 +9,8 @@ export const Game = () => {
     const player2 = AIPlayer();
     player2.gameBoard.generateBoard();
 
-    const p1gameBoard = new GameboardComponent(player1.gameBoard);
-    const p2gameBoard = new GameboardComponent(player2.gameBoard);
+    const p1gameBoard = new GameboardComponent(player1);
+    const p2gameBoard = new GameboardComponent(player2);
 
     return {
         player1,

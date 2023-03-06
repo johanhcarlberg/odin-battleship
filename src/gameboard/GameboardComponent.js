@@ -1,8 +1,9 @@
 import './GameboardComponent.css';
 
 export class GameboardComponent {
-    constructor(gameboard) {
-        this.gameboard = gameboard;
+    constructor(player) {
+        this.player = player;
+        this.gameboard = player.gameBoard;
     }
 
     render() {
