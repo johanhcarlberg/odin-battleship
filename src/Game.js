@@ -10,7 +10,7 @@ export const Game = () => {
     player2.gameBoard.generateBoard();
 
     const p1gameBoard = new GameboardComponent(player1);
-    const p2gameBoard = new GameboardComponent(player2);
+    const p2gameBoard = new GameboardComponent(player2, true);
 
     return {
         player1,

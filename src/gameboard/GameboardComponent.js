@@ -1,9 +1,10 @@
 import './GameboardComponent.css';
 
 export class GameboardComponent {
-    constructor(player) {
+    constructor(player, hideShips = false) {
         this.player = player;
         this.gameboard = player.gameBoard;
+        this.hideShips = hideShips;
     }
 
     render() {
@@ -22,7 +23,7 @@ export class GameboardComponent {
                 console.log('clicked ' + position);
             })
 
-            if (boardItems[i]) {
+            if (boardItems[i] && !this.hideShips) {
                 gameboardItem.classList.add('ship');
 
                 if(boardItems[i].isSunk()) {
