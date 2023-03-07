@@ -16,3 +16,15 @@
     background-color: #333;
     color: #fff;
 }
+
+.miss {
+    background-color: #aaa;
+}
+
+.hit {
+    background-color: rgb(125, 247, 125);
+}
+
+.sunk {
+    background-color: rgb(255, 91, 91);
+}

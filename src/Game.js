@@ -15,6 +15,7 @@ export class Game {
             console.log(coords);
             if (this.player1.getIsCurrentPlayer()) {
                 this.player2.gameBoard.receiveAttack(coords[0],coords[1]);
+                this.player2gameBoard.updateGameboardItems();
             }
         }
 

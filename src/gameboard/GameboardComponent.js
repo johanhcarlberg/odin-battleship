@@ -38,15 +38,14 @@ export class GameboardComponent {
                 }
 
                 if (board[index].isSunk()) {
+                    gameboardItem.classList.remove('hit');
                     gameboardItem.classList.add('sunk');
+                } else if (this.gameboard.hitExists(this.gameboard.getCoordsFromIndex(index))) {
+                    gameboardItem.classList.add('hit');
                 }
-
+            } else {
                 if (this.gameboard.missExists(this.gameboard.getCoordsFromIndex(index))) {
                     gameboardItem.classList.add('miss');
-                }
-
-                if (this.gameboard.hitExists(this.gameboard.getCoordsFromIndex(index))) {
-                    gameboardItem.classList.add('hit');
                 }
             }
         }
