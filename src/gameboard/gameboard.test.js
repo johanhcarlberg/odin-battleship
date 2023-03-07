@@ -109,3 +109,10 @@ test('can get x,y from index', () => {
     expect(gameBoard.getCoordsFromIndex(23)).toEqual([3,2]);
     expect(gameBoard.getCoordsFromIndex(0)).toEqual([0,0]);
 });
+
+test('can get list of ships', () => {
+    let gameBoard = GameboardFactory();
+    expect(gameBoard.getShips).toBeDefined();
+    gameBoard.placeShip(2, {x: 0, y: 0});
+    expect(gameBoard.getShips()[0]).toBeDefined();
+})
