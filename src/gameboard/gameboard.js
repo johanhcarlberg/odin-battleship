@@ -38,7 +38,7 @@ export const GameboardFactory = (boardLength = 10) => {
         return containsHits;
     }
 
-    const _missExists = (pos) => {
+    const missExists = (pos) => {
         const posString = JSON.stringify(pos);
         let containsMiss = missedShots.some((e) => {
             return JSON.stringify(e) === posString;
@@ -48,7 +48,7 @@ export const GameboardFactory = (boardLength = 10) => {
 
     const receiveAttack = (x, y) => {
         const pos = [x, y];
-        if (hitExists(pos) || _missExists(pos)) {
+        if (hitExists(pos) || missExists(pos)) {
             return;
         }
 
@@ -151,5 +151,6 @@ export const GameboardFactory = (boardLength = 10) => {
         getCoordsFromIndex,
         getShips,
         hitExists,
+        missExists,
     }
 }

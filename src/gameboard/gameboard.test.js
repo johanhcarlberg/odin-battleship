@@ -124,3 +124,9 @@ test('can check if hit exists', () => {
     gameBoard.receiveAttack(0,0);
     expect(gameBoard.hitExists([0,0])).toBe(true);
 })
+
+test('can check if miss exists', () => {
+    let gameBoard = GameboardFactory();
+    gameBoard.receiveAttack(0,0);
+    expect(gameBoard.missExists([0,0])).toBe(true);
+})
