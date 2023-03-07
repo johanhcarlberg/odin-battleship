@@ -7,6 +7,8 @@ export const GameboardFactory = (boardLength = 10) => {
     const getMissedShots = ()  => missedShots;
     const getHits = () => hits;
 
+    const ships = [];
+
     const createBoard = () => {
         let totalLength = length * length;
         return new Array(totalLength);
@@ -131,6 +133,10 @@ export const GameboardFactory = (boardLength = 10) => {
         return [x, y];
     }
 
+    const getShips = () => {
+        return ships;
+    }
+
     return {
         getBoard,
         getPos,
@@ -140,6 +146,7 @@ export const GameboardFactory = (boardLength = 10) => {
         isAllSunk,
         getHits,
         generateBoard,
-        getCoordsFromIndex
+        getCoordsFromIndex,
+        getShips,
     }
 }
