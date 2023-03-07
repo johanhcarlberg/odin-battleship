@@ -25,8 +25,8 @@ test('can place ships', () => {
     expect(gameBoard[0]).toBeUndefined();
     let newShip = gameBoard.placeShip(2, {x: 0, y: 0})
     let newBoard = gameBoard.getBoard();
-    expect(newBoard[0]).toBe(newShip.ship);
-    expect(newBoard[1]).toBe(newShip.ship);
+    expect(newBoard[0]).toBe(newShip);
+    expect(newBoard[1]).toBe(newShip);
     expect(newBoard[1].getLength()).toBe(2);
 })
 
@@ -114,6 +114,13 @@ test('can get x,y from index', () => {
 test('can get list of ships', () => {
     let gameBoard = GameboardFactory();
     expect(gameBoard.getShips).toBeDefined();
-    gameBoard.placeShip(2, {x: 0, y: 0});
-    expect(gameBoard.getShips()[0]).toBeDefined();
+    let newShip = gameBoard.placeShip(2, {x: 0, y: 0});
+    expect(gameBoard.getShips()[0]).toBe(newShip);
+})
+
+test('can check if hit exists', () => {
+    let gameBoard = GameboardFactory();
+    let newShip = gameBoard.placeShip(2, {x: 0, y: 0});
+    gameBoard.receiveAttack(0,0);
+    expect(gameBoard.hitExists([0,0])).toBe(true);
 })

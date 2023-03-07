@@ -30,7 +30,7 @@ export const GameboardFactory = (boardLength = 10) => {
         index = data;
     }
 
-    const _hitExists = (pos) => {
+    const hitExists = (pos) => {
         const posString = JSON.stringify(pos);
         let containsHits = hits.some((e) => {
             return JSON.stringify(e) === posString;
@@ -48,7 +48,7 @@ export const GameboardFactory = (boardLength = 10) => {
 
     const receiveAttack = (x, y) => {
         const pos = [x, y];
-        if (_hitExists(pos) || _missExists(pos)) {
+        if (hitExists(pos) || _missExists(pos)) {
             return;
         }
 
@@ -69,11 +69,7 @@ export const GameboardFactory = (boardLength = 10) => {
             throw new Error('Position already has ship');
         }
         let ship = ShipFactory(size);
-        const shipToAdd = {
-            ship: ship,
-            position: startIndex
-        }
-        ships.push(shipToAdd);
+        ships.push(ship);
 
         let newBoard = getBoard();
         for(let i = 0; i < ship.getLength(); i++) {
@@ -81,7 +77,7 @@ export const GameboardFactory = (boardLength = 10) => {
         }
 
         _setBoard(newBoard);
-        return shipToAdd;
+        return ship;
     }
 
     const _isShipPositionValid = (size, pos) => {
@@ -154,5 +150,6 @@ export const GameboardFactory = (boardLength = 10) => {
         generateBoard,
         getCoordsFromIndex,
         getShips,
+        hitExists,
     }
 }
