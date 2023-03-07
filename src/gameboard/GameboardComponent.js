@@ -8,10 +8,9 @@ export class GameboardComponent {
     }
 
     render() {
-        const gameboardDiv = document.createElement('div');
-        gameboardDiv.classList.add('gameboard-container');
+        this.gameboardDiv = document.createElement('div');
+        this.gameboardDiv.classList.add('gameboard-container');
         
-        const boardItems = this.gameboard.getBoard();
         for (let i = 0; i < this.gameboard.getBoard().length; i++) {
             const gameboardItem = document.createElement('div');
             gameboardItem.classList.add('gameboard-item');
@@ -22,18 +21,34 @@ export class GameboardComponent {
                 const position = e.currentTarget.position;
                 console.log('clicked ' + position);
             })
+            
+            this.gameboardDiv.appendChild(gameboardItem);
+        }
+        this.updateGameboardItems();
+        return this.gameboardDiv;
+    }
+    
+    updateGameboardItems() {
+        for (let gameboardItem of this.gameboardDiv.childNodes) {
+            const index = gameboardItem.position;
+            const board = this.gameboard.getBoard();
+            if (board[index]) {
+                if (!this.hideShips) {
+                    gameboardItem.classList.add('ship');
+                }
 
-            if (boardItems[i] && !this.hideShips) {
-                gameboardItem.classList.add('ship');
-
-                if(boardItems[i].isSunk()) {
+                if (board[index].isSunk()) {
                     gameboardItem.classList.add('sunk');
                 }
+
+                if (this.gameboard.missExists(this.gameboard.getCoordsFromIndex(index))) {
+                    gameboardItem.classList.add('miss');
+                }
+
+                if (this.gameboard.hitExists(this.gameboard.getCoordsFromIndex(index))) {
+                    gameboardItem.classList.add('hit');
+                }
             }
-            
-            gameboardDiv.appendChild(gameboardItem);
         }
-        
-        return gameboardDiv;
     }
 }
