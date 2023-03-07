@@ -23,9 +23,10 @@ test('can get array index from x and y coordinates', () => {
 test('can place ships', () => {
     let gameBoard = GameboardFactory(10);
     expect(gameBoard[0]).toBeUndefined();
-    let newBoard = gameBoard.placeShip(2, {x: 0, y: 0})
-    expect(newBoard[0]).toBeDefined();
-    expect(newBoard[1]).toBeDefined();
+    let newShip = gameBoard.placeShip(2, {x: 0, y: 0})
+    let newBoard = gameBoard.getBoard();
+    expect(newBoard[0]).toBe(newShip.ship);
+    expect(newBoard[1]).toBe(newShip.ship);
     expect(newBoard[1].getLength()).toBe(2);
 })
 

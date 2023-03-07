@@ -69,14 +69,19 @@ export const GameboardFactory = (boardLength = 10) => {
             throw new Error('Position already has ship');
         }
         let ship = ShipFactory(size);
-        ships.push({ship: ship, position: startIndex});
+        const shipToAdd = {
+            ship: ship,
+            position: startIndex
+        }
+        ships.push(shipToAdd);
+
         let newBoard = getBoard();
         for(let i = 0; i < ship.getLength(); i++) {
             newBoard[startIndex + i] = ship;
         }
 
         _setBoard(newBoard);
-        return board;
+        return shipToAdd;
     }
 
     const _isShipPositionValid = (size, pos) => {
