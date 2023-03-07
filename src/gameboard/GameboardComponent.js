@@ -1,10 +1,11 @@
 import './GameboardComponent.css';
 
 export class GameboardComponent {
-    constructor(player, hideShips = false) {
+    constructor(player, hideShips = false, gameboardItemClickCallback) {
         this.player = player;
         this.gameboard = player.gameBoard;
         this.hideShips = hideShips;
+        this.gameboardItemClickCallback = gameboardItemClickCallback;
     }
 
     render() {
@@ -18,8 +19,7 @@ export class GameboardComponent {
             gameboardItem.position = i;
 
             gameboardItem.addEventListener('click', (e) => {
-                const position = e.currentTarget.position;
-                console.log('clicked ' + position);
+                this.gameboardItemClickCallback(e);
             })
             
             this.gameboardDiv.appendChild(gameboardItem);
