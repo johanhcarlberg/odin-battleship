@@ -136,3 +136,8 @@ test('cannot receive invalid attacks', () => {
     expect(() => gameBoard.receiveAttack(-1, 0)).toThrow();
     expect(() => gameBoard.receiveAttack(0, 100)).toThrow();
 })
+
+test('can get length', () => {
+    let gameBoard = GameboardFactory();
+    expect(gameBoard.getLength()).toBe(10);
+})

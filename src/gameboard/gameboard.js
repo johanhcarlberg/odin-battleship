@@ -2,6 +2,8 @@ import { ShipFactory } from "../ship/ship";
 
 export const GameboardFactory = (boardLength = 10) => {
     const length = boardLength;
+    const getLength = () => length;
+
     const missedShots = [];
     const hits = [];
     const getMissedShots = ()  => missedShots;
@@ -147,7 +149,7 @@ export const GameboardFactory = (boardLength = 10) => {
             return false;
         }
 
-        if (pos[0] > board.length - 1 || pos[1] > board.length - 1) {
+        if (pos[0] > length - 1 || pos[1] > length - 1) {
             return false;
         }
 
@@ -167,5 +169,6 @@ export const GameboardFactory = (boardLength = 10) => {
         getShips,
         hitExists,
         missExists,
+        getLength
     }
 }
