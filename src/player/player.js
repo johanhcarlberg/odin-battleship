@@ -17,8 +17,8 @@ export const Player = () => {
 
 const isAIPlayer = (player = {}) => {
     const getNextAttack = () => {
-        let x = Math.floor(Math.random() * (Math.pow(10, 2)))
-        let y = Math.floor(Math.random() * (Math.pow(10, 2)))
+        let x = Math.floor(Math.random() * player.gameBoard.getLength())
+        let y = Math.floor(Math.random() * player.gameBoard.getLength())
         return {x, y};
     }
 
