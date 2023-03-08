@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals';
+import { GameboardFactory } from '../gameboard/gameboard';
 import { Player, AIPlayer } from './player';
 
 test('can create player', () => {
@@ -26,6 +27,15 @@ test('AI player can generate attacks', () => {
     expect(firstAttack).not.toEqual(secondAttack);
     expect(firstAttack.x).toBeGreaterThan(0);
     expect(firstAttack.x).toBeLessThan(100);
+})
+
+test('AI player can attack', () => {
+    const aiPlayer = AIPlayer();
+    const gameboard = GameboardFactory();
+    expect(gameboard.getMissedShots().length).toBe(0);
+    const attack = aiPlayer.getNextAttack();
+    gameboard.receiveAttack(attack.x, attack.y);
+    expect(gameboard.getMissedShots().length).toBe(1);
 })
 
 test('can get current player status', () => {
