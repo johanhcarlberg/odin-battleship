@@ -130,3 +130,9 @@ test('can check if miss exists', () => {
     gameBoard.receiveAttack(0,0);
     expect(gameBoard.missExists([0,0])).toBe(true);
 })
+
+test('cannot receive invalid attacks', () => {
+    let gameBoard = GameboardFactory();
+    expect(() => gameBoard.receiveAttack(-1, 0)).toThrow();
+    expect(() => gameBoard.receiveAttack(0, 100)).toThrow();
+})
