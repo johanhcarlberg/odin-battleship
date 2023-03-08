@@ -11,11 +11,25 @@ export class Game {
         this.player1.setIsCurrentPlayer(true);
 
         this.handleEnemyGameboardInput = (e) => {
+            if (this.player2.gameBoard.isAllSunk() || this.player1.gameBoard.isAllSunk()) {
+                return;
+            }
             const coords = this.player2.gameBoard.getCoordsFromIndex(e.currentTarget.position);
-            console.log(coords);
-            if (this.player1.getIsCurrentPlayer()) {
-                this.player2.gameBoard.receiveAttack(coords[0],coords[1]);
-                this.player2gameBoard.updateGameboardItems();
+            this.player2.gameBoard.receiveAttack(coords[0],coords[1]);
+            this.player2gameBoard.updateGameboardItems();
+            if (this.player2.gameBoard.isAllSunk()) {
+                console.log('Game Over, player 1 wins');
+                this.gameOver = true;
+                return;
+            }
+            const aiAttack = this.player2.getNextAttack();
+            console.log(aiAttack);
+            this.player1.gameBoard.receiveAttack(aiAttack.x, aiAttack.y);
+            this.player1gameBoard.updateGameboardItems();
+            if (this.player1.gameBoard.isAllSunk()) {
+                console.log('Game Over, player 2 wins');
+                this.gameOver = true;
+                return;
             }
         }
 
