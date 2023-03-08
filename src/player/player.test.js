@@ -56,3 +56,10 @@ test('can toggle current player status', () => {
     player.toggleIsCurrentPlayer();
     expect(player.getIsCurrentPlayer()).toBe(true);
 })
+
+test('Saves AI attacks in array', () => {
+    const aiPlayer = AIPlayer();
+    expect(aiPlayer.getPerformedAttacks().length).toBe(0);
+    aiPlayer.getNextAttack();
+    expect(aiPlayer.getPerformedAttacks().length).toBe(1);
+})
