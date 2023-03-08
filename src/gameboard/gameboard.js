@@ -48,6 +48,9 @@ export const GameboardFactory = (boardLength = 10) => {
 
     const receiveAttack = (x, y) => {
         const pos = [x, y];
+        if (!isValidPosition(pos)) {
+            throw new Error(`Invalid position: ${pos}`);
+        }
         if (hitExists(pos) || missExists(pos)) {
             return;
         }
@@ -137,6 +140,18 @@ export const GameboardFactory = (boardLength = 10) => {
 
     const getShips = () => {
         return ships;
+    }
+
+    const isValidPosition = (pos) => {
+        if (pos[0] < 0 || pos[1] < 0) {
+            return false;
+        }
+
+        if (pos[0] > board.length - 1 || pos[1] > board.length - 1) {
+            return false;
+        }
+
+        return true;
     }
 
     return {
