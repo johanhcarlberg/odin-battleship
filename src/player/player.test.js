@@ -25,8 +25,8 @@ test('AI player can generate attacks', () => {
     let firstAttack = aiPlayer.getNextAttack();
     let secondAttack = aiPlayer.getNextAttack();
     expect(firstAttack).not.toEqual(secondAttack);
-    expect(firstAttack.x).toBeGreaterThan(0);
-    expect(firstAttack.x).toBeLessThan(100);
+    expect(firstAttack.x).toBeGreaterThanOrEqual(0);
+    expect(firstAttack.x).toBeLessThan(10);
 })
 
 test('AI player can attack', () => {
