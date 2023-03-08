@@ -38,9 +38,11 @@ export class GameboardComponent {
                 }
 
                 if (board[index].isSunk()) {
+                    gameboardItem.classList.remove('ship');
                     gameboardItem.classList.remove('hit');
                     gameboardItem.classList.add('sunk');
                 } else if (this.gameboard.hitExists(this.gameboard.getCoordsFromIndex(index))) {
+                    gameboardItem.classList.remove('ship');
                     gameboardItem.classList.add('hit');
                 }
             } else {
