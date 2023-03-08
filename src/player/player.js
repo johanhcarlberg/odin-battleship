@@ -19,11 +19,7 @@ const isAIPlayer = (player = {}) => {
     const getNextAttack = () => {
         let x = Math.floor(Math.random() * (Math.pow(10, 2)))
         let y = Math.floor(Math.random() * (Math.pow(10, 2)))
-        return {
-            x,
-            y,
-            isAI: true,
-        }
+        return {x, y};
     }
 
     return {
