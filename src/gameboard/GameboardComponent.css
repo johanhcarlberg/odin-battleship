@@ -22,9 +22,9 @@
 }
 
 .hit {
-    background-color: rgb(125, 247, 125);
+    background-color: rgb(255, 91, 91);
 }
 
 .sunk {
-    background-color: rgb(255, 91, 91);
+    background-color: rgb(99, 0, 0);
 }
