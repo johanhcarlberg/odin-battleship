@@ -91,6 +91,11 @@ export const GameboardFactory = (boardLength = 10) => {
         }
 
         _setBoard(newBoard);
+        const shipsToPlaceIndex = shipsToPlace.indexOf(size);
+        if (shipsToPlaceIndex === -1) {
+            throw new Error('No ships remaining of given ship size');
+        }
+        shipsToPlace.splice(shipsToPlaceIndex, 1);
         return ship;
     }
 
@@ -121,7 +126,7 @@ export const GameboardFactory = (boardLength = 10) => {
     }
 
     const generateBoard = () => {
-        const shipsToCreate = [2, 2, 2, 3, 3, 4];
+        const shipsToCreate = Array.from(shipsToPlace);
         const shipsCreated = [];
         while (shipsToCreate.length > 0) {
             const newShipSize = shipsToCreate.shift();
