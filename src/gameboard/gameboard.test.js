@@ -142,7 +142,7 @@ test('can get length', () => {
     expect(gameBoard.getLength()).toBe(10);
 })
 
-test('cannot call placeShip with incorrect arguments', () => {
+test('cannot call placeShip with no position argument', () => {
     let gameBoard = GameboardFactory();
     expect(() => gameBoard.placeShip(9)).toThrow();
 })
@@ -150,4 +150,12 @@ test('cannot call placeShip with incorrect arguments', () => {
 test('can only place allowed ships', () => {
     let gameBoard = GameboardFactory();
     expect(() => gameBoard.placeShip(9, {x: 0, y: 0})).toThrow();
+})
+
+test('can only place correct number of ships of given size', () => {
+    let gameBoard = GameboardFactory();
+    gameBoard.placeShip(2, {x: 0, y: 0});
+    gameBoard.placeShip(2, {x: 0, y: 1});
+    gameBoard.placeShip(2, {x: 0, y: 2});
+    expect(() => gameBoard.placeShip(2, {x: 0, y: 3})).toThrow();
 })
