@@ -1,6 +1,6 @@
 import './app.css';
 
-import { Game } from "./Game";
+import { Game } from "./Game/Game";
 
 (() => {
     console.log('battleship app loaded');
@@ -9,4 +9,5 @@ import { Game } from "./Game";
     const game = new Game();
     wrapper.appendChild(game.player1gameBoard.render());
     wrapper.appendChild(game.player2gameBoard.render());
+    wrapper.appendChild(game.gameOverComponent.render());
 })();

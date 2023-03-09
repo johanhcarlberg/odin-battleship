@@ -17,9 +17,11 @@ export class GameboardComponent {
             gameboardItem.classList.add('gameboard-item');
             gameboardItem.textContent = i;
             gameboardItem.position = i;
-
+            
             gameboardItem.addEventListener('click', (e) => {
-                this.gameboardItemClickCallback(e);
+                if (this.gameboardItemClickCallback) {
+                    this.gameboardItemClickCallback(e);
+                }
             })
             
             this.gameboardDiv.appendChild(gameboardItem);

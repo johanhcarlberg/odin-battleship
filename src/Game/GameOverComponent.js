@@ -1,27 +1,52 @@
+import './GameOverComponent.css';
+
 export class GameOverComponent {
-    constructor(gameOverText) {
+    constructor(gameOverText, newGameCallback) {
         this.gameOverText = gameOverText;
+        this.newGameCallback = newGameCallback;
     }
 
     render() {
-        this.gameOverDiv = document.createElement('div');
-        this.gameOverDiv.classList.add('game-over');
+        this.gameOverContainer = document.createElement('div');
+        this.gameOverContainer.classList.add('game-over-container', 'hidden');
+
+        const gameOverDiv = document.createElement('div');
+        gameOverDiv.classList.add('game-over');
+        this.gameOverContainer.appendChild(gameOverDiv);
 
         const gameOverHeader = document.createElement('h2');
         gameOverHeader.classList.add('game-over-header');
         gameOverHeader.textContent = 'Game Over!';
-        this.gameOverDiv.appendChild(gameOverHeader);
+        gameOverDiv.appendChild(gameOverHeader);
 
-        const gameOverSpan = document.createElement('span');
-        gameOverSpan.classList.add('game-over-text');
-        gameOverSpan.textContent = this.gameOverText || '';
-        this.gameOverDiv.appendChild(gameOverSpan);
+        this.gameOverSpan = document.createElement('span');
+        this.gameOverSpan.classList.add('game-over-text');
+        this.gameOverSpan.textContent = this.gameOverText || '';
+        gameOverDiv.appendChild(this.gameOverSpan);
 
         const newGameButton = document.createElement('button');
         newGameButton.classList.add('new-game-button');
         newGameButton.textContent = 'New Game';
-        this.gameOverDiv.appendChild(newGameButton);
+        if (this.newGameCallback) {
+            newGameButton.addEventListener('click', (e) => {
+                this.newGameCallback(e);
+            })
+        }
+        gameOverDiv.appendChild(newGameButton);
 
-        return this.gameOverDiv;
+        return this.gameOverContainer;
+    }
+
+    setGameOverText(gameOverText) {
+        this.gameOverSpan.textContent = gameOverText
+    }
+
+    toggle() {
+        if (this.gameOverContainer.classList.contains('hidden')) {
+            this.gameOverContainer.classList.remove('hidden');
+        } else {
+            this.gameOverContainer.classList.add('hidden');
+        }
+        
     }
 }
