@@ -141,3 +141,13 @@ test('can get length', () => {
     let gameBoard = GameboardFactory();
     expect(gameBoard.getLength()).toBe(10);
 })
+
+test('cannot call placeShip with incorrect arguments', () => {
+    let gameBoard = GameboardFactory();
+    expect(() => gameBoard.placeShip(9)).toThrow();
+})
+
+test('can only place allowed ships', () => {
+    let gameBoard = GameboardFactory();
+    expect(() => gameBoard.placeShip(9, {x: 0, y: 0})).toThrow();
+})
