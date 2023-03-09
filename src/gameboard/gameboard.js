@@ -9,6 +9,7 @@ export const GameboardFactory = (boardLength = 10) => {
     const getMissedShots = ()  => missedShots;
     const getHits = () => hits;
 
+    const shipsToPlace = [2, 2, 2, 3, 3, 4];
     const ships = [];
 
     const createBoard = () => {
@@ -70,6 +71,11 @@ export const GameboardFactory = (boardLength = 10) => {
         if (pos.x == null || pos.y == null) {
             throw new Error('Invalid position argument');
         }
+
+        if (!shipsToPlace.includes(size)) {
+            throw new Error('Ship size invalid or no more ships of size to place');
+        }
+
         const x = pos.x;
         const y = pos.y;
         const startIndex = getPos(x, y);
