@@ -67,6 +67,9 @@ export const GameboardFactory = (boardLength = 10) => {
     }
 
     const placeShip = (size, pos) => {
+        if (pos.x == null || pos.y == null) {
+            throw new Error('Invalid position argument');
+        }
         const x = pos.x;
         const y = pos.y;
         const startIndex = getPos(x, y);
