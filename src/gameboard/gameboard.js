@@ -104,11 +104,11 @@ export const GameboardFactory = (boardLength = 10) => {
     const _isShipPositionValid = (size, pos) => {
         for (let i = 0; i < size; i++) {
             let x = pos.x + i;
-            let y = pos.y + i;
+            let y = pos.y;
             if (x > length - 1 || y > length - 1) {
                 return false;
             }
-            let boardIndex = getPos(pos.x + i, pos.y);
+            let boardIndex = getPos(x, y);
             if (getBoard()[boardIndex]) {
                 return false;
             }
