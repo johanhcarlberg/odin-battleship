@@ -18,6 +18,7 @@ export const Player = () => {
 const isAIPlayer = (player = {}) => {
     const performedAttacks = [];
     const getPerformedAttacks = () => performedAttacks;
+    const isAI = true;
 
     const hasPerformedAttack = (pos) => {
         const posString = JSON.stringify(pos);
@@ -40,7 +41,8 @@ const isAIPlayer = (player = {}) => {
     return {
         ...player,
         getNextAttack,
-        getPerformedAttacks
+        getPerformedAttacks,
+        isAI
     }
 }
 
