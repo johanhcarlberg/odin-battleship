@@ -1,0 +1,26 @@
+.ship-placement-container {
+    border: 1px solid #333;
+    display: grid;
+    width: 90%;
+    justify-self: center;
+    margin-top: 2rem;
+}
+
+.ship-to-place {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto;
+    justify-items: center;
+    justify-content: start;
+    margin: 5px 5px;
+}
+
+.ship-to-place-cell {
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+}
+
+
+

@@ -10,4 +10,5 @@ import { Game } from "./Game/Game";
     wrapper.appendChild(game.player1gameBoard.render());
     wrapper.appendChild(game.player2gameBoard.render());
     wrapper.appendChild(game.gameOverComponent.render());
+    wrapper.appendChild(game.player1ShipPlacement.render());
 })();

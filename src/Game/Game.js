@@ -1,12 +1,15 @@
 import { Player, AIPlayer } from "../player/player";
 import { GameboardComponent } from "../gameboard/GameboardComponent";
 import { GameOverComponent } from "./GameOverComponent";
+import { ShipPlacementComponent } from "../gameboard/ShipPlacementComponent";
 
 
 export class Game {
-    constructor() {
+    constructor(generatePlayerBoard) {
         this.player1 = Player();
-        this.player1.gameBoard.generateBoard();
+        if (generatePlayerBoard) {
+            this.player1.gameBoard.generateBoard();
+        }
         this.player2 = AIPlayer();
         this.player2.gameBoard.generateBoard();
         this.player1.setIsCurrentPlayer(true);
@@ -38,6 +41,7 @@ export class Game {
         }
 
         this.player1gameBoard = new GameboardComponent(this.player1, false);
+        this.player1ShipPlacement = new ShipPlacementComponent(this.player1.gameBoard)
         this.player2gameBoard = new GameboardComponent(this.player2, true, this.handleEnemyGameboardInput);
         this.gameOverComponent = new GameOverComponent('', () => {
             this.gameOverComponent.toggle();
