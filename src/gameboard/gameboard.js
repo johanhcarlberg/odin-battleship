@@ -10,6 +10,8 @@ export const GameboardFactory = (boardLength = 10) => {
     const getHits = () => hits;
 
     const shipsToPlace = [2, 2, 2, 3, 3, 4];
+    const getShipsToPlace = () => shipsToPlace;
+
     const ships = [];
 
     const createBoard = () => {
@@ -183,6 +185,7 @@ export const GameboardFactory = (boardLength = 10) => {
         getShips,
         hitExists,
         missExists,
-        getLength
+        getLength,
+        getShipsToPlace
     }
 }

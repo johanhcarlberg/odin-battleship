@@ -147,6 +147,11 @@ test('cannot call placeShip with no position argument', () => {
     expect(() => gameBoard.placeShip(9)).toThrow();
 })
 
+test('can get ships to place', () => {
+    let gameBoard = GameboardFactory();
+    expect(gameBoard.getShipsToPlace().length).toBeGreaterThan(0);
+})
+
 test('can only place allowed ships', () => {
     let gameBoard = GameboardFactory();
     expect(() => gameBoard.placeShip(9, {x: 0, y: 0})).toThrow();
