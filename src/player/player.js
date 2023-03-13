@@ -18,6 +18,8 @@ export const Player = () => {
 const isAIPlayer = (player = {}) => {
     const performedAttacks = [];
     const getPerformedAttacks = () => performedAttacks;
+    const queuedAttacks = [];
+    const getQueuedAttacks = () => queuedAttacks;
     const isAI = true;
 
     const hasPerformedAttack = (pos) => {
@@ -28,6 +30,12 @@ const isAIPlayer = (player = {}) => {
     }
 
     const getNextAttack = () => {
+        if (queuedAttacks.length > 0) {
+            const attack = queuedAttacks.shift();
+            let x = attack[0];
+            let y = attack[1];
+            return {x, y};
+        }
         let x = Math.floor(Math.random() * player.gameBoard.getLength())
         let y = Math.floor(Math.random() * player.gameBoard.getLength())
         
@@ -38,11 +46,21 @@ const isAIPlayer = (player = {}) => {
         return {x, y};
     }
 
+    const queueAttack = (x, y) => {
+        if (hasPerformedAttack([x,y])) {
+            return;
+        }
+
+        queuedAttacks.push([x,y]);
+    }
+
     return {
         ...player,
         getNextAttack,
         getPerformedAttacks,
-        isAI
+        isAI,
+        getQueuedAttacks,
+        queueAttack
     }
 }
 
