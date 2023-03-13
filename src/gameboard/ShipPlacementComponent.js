@@ -23,6 +23,11 @@ export class ShipPlacementComponent {
         } 
         this.shipPlacementContainer.innerHTML = '';
 
+        const shipPlacementHeader = document.createElement('h2');
+        shipPlacementHeader.classList.add('ship-placement-header');
+        shipPlacementHeader.textContent = 'Ship Placement';
+        this.shipPlacementContainer.appendChild(shipPlacementHeader);
+
         for (const shipToPlace of this.gameboard.getShipsToPlace()) {
             const shipDiv = document.createElement('div');
             shipDiv.classList.add('ship-to-place');
