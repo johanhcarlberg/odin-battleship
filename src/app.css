@@ -54,3 +54,16 @@ table {
     grid-template-columns: 1fr 1fr;
     justify-items: center;
 }
+
+.main-header {
+    grid-column: 1 / span 2;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.player-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 1rem 0 0.5rem 0;
+}
