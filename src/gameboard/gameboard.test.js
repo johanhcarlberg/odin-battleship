@@ -173,3 +173,10 @@ test('can only place correct number of ships of given size', () => {
     gameBoard.placeShip(2, {x: 0, y: 2});
     expect(() => gameBoard.placeShip(2, {x: 0, y: 3})).toThrow();
 })
+
+test('hits return true, misses return false', () => {
+    let gameBoard = GameboardFactory();
+    gameBoard.placeShip(2, {x: 0, y: 0});
+    expect(gameBoard.receiveAttack(0,0)).toBe(true);
+    expect(gameBoard.receiveAttack(0,1)).toBe(false);
+})

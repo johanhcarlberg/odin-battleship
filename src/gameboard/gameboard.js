@@ -57,15 +57,17 @@ export const GameboardFactory = (boardLength = 10) => {
             throw new Error(`Invalid position: ${pos}`);
         }
         if (hitExists(pos) || missExists(pos)) {
-            return;
+            return false;
         }
 
         const ship = board[getPos(x,y)];
         if (ship && ship.hit) {
             hits.push(pos);
             ship.hit();
+            return true;
         } else {
             missedShots.push(pos);
+            return false;
         }
     }
 
