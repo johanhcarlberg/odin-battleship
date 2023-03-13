@@ -87,3 +87,10 @@ test('AI player uses queued attacks first', () => {
     expect(aiPlayer.getNextAttack()).toEqual({x: 0, y: 0});
     expect(aiPlayer.getQueuedAttacks().length).toBe(0);
 })
+
+test('AI player cannot queue same attack multiple times', () => {
+    const aiPlayer = AIPlayer();
+    aiPlayer.queueAttack(0,0);
+    aiPlayer.queueAttack(0,0);
+    expect(aiPlayer.getQueuedAttacks().length).toBe(1);
+})

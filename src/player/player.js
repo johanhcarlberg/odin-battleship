@@ -29,6 +29,13 @@ const isAIPlayer = (player = {}) => {
         })
     }
 
+    const hasQueuedAttack = (pos) => {
+        const posString = JSON.stringify(pos);
+        return queuedAttacks.some((item) => {
+            return JSON.stringify(item) === posString;
+        })
+    }
+
     const getNextAttack = () => {
         if (queuedAttacks.length > 0) {
             const attack = queuedAttacks.shift();
@@ -47,7 +54,7 @@ const isAIPlayer = (player = {}) => {
     }
 
     const queueAttack = (x, y) => {
-        if (hasPerformedAttack([x,y])) {
+        if (hasPerformedAttack([x,y]) || hasQueuedAttack([x,y])) {
             return;
         }
 
