@@ -63,3 +63,8 @@ test('Saves AI attacks in array', () => {
     aiPlayer.getNextAttack();
     expect(aiPlayer.getPerformedAttacks().length).toBe(1);
 })
+
+test('can check if player is AI', () => {
+    const aiPlayer = AIPlayer();
+    expect(aiPlayer.isAI).toBe(true);
+})
