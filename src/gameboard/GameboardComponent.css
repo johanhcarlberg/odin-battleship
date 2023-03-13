@@ -10,21 +10,26 @@
     justify-items: center;
     border: 1px solid #777;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .ship {
     background-color: #333;
     color: #fff;
+    cursor: default;
 }
 
 .miss {
     background-color: #aaa;
+    cursor: default;
 }
 
 .hit {
     background-color: rgb(255, 91, 91);
+    cursor: default;
 }
 
 .sunk {
     background-color: rgb(99, 0, 0);
+    cursor: default;
 }
