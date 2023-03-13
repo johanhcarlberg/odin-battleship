@@ -68,3 +68,22 @@ test('can check if player is AI', () => {
     const aiPlayer = AIPlayer();
     expect(aiPlayer.isAI).toBe(true);
 })
+
+test('AI player has queue for attacks', () => {
+    const aiPlayer = AIPlayer();
+    expect(aiPlayer.getQueuedAttacks().length).toBe(0);
+})
+
+test('AI player can queue attacks', () => {
+    const aiPlayer = AIPlayer();
+    expect(aiPlayer.getQueuedAttacks().length).toBe(0);
+    aiPlayer.queueAttack(0, 0);
+    expect(aiPlayer.getQueuedAttacks().length).toBe(1);
+})
+
+test('AI player uses queued attacks first', () => {
+    const aiPlayer = AIPlayer();
+    aiPlayer.queueAttack(0,0);
+    expect(aiPlayer.getNextAttack()).toEqual({x: 0, y: 0});
+    expect(aiPlayer.getQueuedAttacks().length).toBe(0);
+})
