@@ -19,6 +19,10 @@ export class Game {
             if (this.player2.gameBoard.isAllSunk() || this.player1.gameBoard.isAllSunk()) {
                 return;
             }
+
+            if (this.player1.gameBoard.getShipsToPlace().length > 0) {
+                return;
+            }
             const coords = this.player2.gameBoard.getCoordsFromIndex(e.currentTarget.position);
             this.player2.gameBoard.receiveAttack(coords[0],coords[1]);
             this.player2gameBoard.updateGameboardItems();
@@ -30,7 +34,11 @@ export class Game {
             }
             const aiAttack = this.player2.getNextAttack();
             console.log(aiAttack);
-            this.player1.gameBoard.receiveAttack(aiAttack.x, aiAttack.y);
+            const hit = this.player1.gameBoard.receiveAttack(aiAttack.x, aiAttack.y);
+            if (hit === true) {
+                this.player2.queueAttack(aiAttack.x - 1, aiAttack.y);
+                this.player2.queueAttack(aiAttack.x + 1, aiAttack.y);
+            }
             this.player1gameBoard.updateGameboardItems();
             if (this.player1.gameBoard.isAllSunk()) {
                 console.log('Game Over, player 2 wins');
