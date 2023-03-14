@@ -33,10 +33,14 @@ export class ShipPlacementComponent {
         for (const shipToPlace of this.gameboard.getShipsToPlace()) {
             const shipDiv = document.createElement('div');
             shipDiv.classList.add('ship-to-place');
+
+            // Make ship draggable, set gameboard position as attribute on 
+            // html element
             shipDiv.draggable = true;
             shipDiv.addEventListener('dragstart', (e) => {
                 e.dataTransfer.setData("text/plain", shipToPlace);
             })
+            
             for (let i = 0; i < shipToPlace; i++) {
                 const shipCell = document.createElement('div');
                 shipCell.classList.add('ship-to-place-cell');
