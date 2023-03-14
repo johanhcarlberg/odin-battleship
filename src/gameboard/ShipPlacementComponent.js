@@ -20,7 +20,9 @@ export class ShipPlacementComponent {
         if (this.gameboard.getShipsToPlace().length === 0) {
             this.shipPlacementContainer.classList.add('hidden');
             return;
-        } 
+        }
+
+        this.shipPlacementContainer.classList.remove('hidden');
         this.shipPlacementContainer.innerHTML = '';
 
         const shipPlacementHeader = document.createElement('h2');
