@@ -37,8 +37,12 @@ export class Game {
             console.log(aiAttack);
             const hit = this.player1.gameBoard.receiveAttack(aiAttack.x, aiAttack.y);
             if (hit === true) {
-                this.player2.queueAttack(aiAttack.x - 1, aiAttack.y);
-                this.player2.queueAttack(aiAttack.x + 1, aiAttack.y);
+                if (this.player1.gameBoard.isValidPosition([aiAttack.x - 1, aiAttack.y])) {
+                    this.player2.queueAttack(aiAttack.x - 1, aiAttack.y);
+                }
+                if (this.player1.gameBoard.isValidPosition([aiAttack.x + 1, aiAttack.y])) {
+                    this.player2.queueAttack(aiAttack.x + 1, aiAttack.y);
+                }
             }
             this.player1gameBoard.updateGameboardItems();
             if (this.player1.gameBoard.isAllSunk()) {
