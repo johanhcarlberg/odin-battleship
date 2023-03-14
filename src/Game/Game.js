@@ -57,7 +57,22 @@ export class Game {
         this.player1ShipPlacement = new ShipPlacementComponent(this.player1.gameBoard)
         this.player2gameBoard = new GameboardComponent(this.player2, true, this.handleEnemyGameboardInput);
         this.gameOverComponent = new GameOverComponent('', () => {
+            this.resetGame();
             this.gameOverComponent.toggle();
+            this.player1ShipPlacement.updateShipsToPlace();
         });
+    }
+
+    resetGame() {
+        this.player1.gameBoard.resetBoard();
+        this.player2.gameBoard.resetBoard();
+        this.player2.reset();
+        if (this.generatePlayerBoard) {
+            this.player1.gameBoard.generateBoard();
+        }
+        this.player2.gameBoard.generateBoard();
+        this.player1.setIsCurrentPlayer(true);
+        this.player1gameBoard.resetGameBoard();
+        this.player2gameBoard.resetGameBoard();
     }
 }
