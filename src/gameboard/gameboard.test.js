@@ -180,3 +180,11 @@ test('hits return true, misses return false', () => {
     expect(gameBoard.receiveAttack(0,0)).toBe(true);
     expect(gameBoard.receiveAttack(0,1)).toBe(false);
 })
+
+test('can reset board', () => {
+    let gameBoard = GameboardFactory();
+    let ship = gameBoard.placeShip(2, {x: 0, y: 0});
+    expect(gameBoard.getBoard()[0]).toEqual(ship);
+    gameBoard.resetBoard();
+    expect(gameBoard.getBoard()[0]).not.toEqual(ship);
+})

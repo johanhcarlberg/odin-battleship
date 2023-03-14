@@ -21,6 +21,9 @@ export const GameboardFactory = (boardLength = 10) => {
     let board = createBoard()
     const getBoard = () => board;
     const _setBoard = (newBoard) => board = newBoard;
+    const resetBoard = () => {
+        board = createBoard();
+    }
 
     const _getIndexFromCoord = (x,y) => {
         return (length * y) + x
@@ -188,6 +191,7 @@ export const GameboardFactory = (boardLength = 10) => {
         hitExists,
         missExists,
         getLength,
-        getShipsToPlace
+        getShipsToPlace,
+        resetBoard
     }
 }
