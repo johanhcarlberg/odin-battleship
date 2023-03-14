@@ -6,8 +6,9 @@ import { ShipPlacementComponent } from "../gameboard/ShipPlacementComponent";
 
 export class Game {
     constructor(generatePlayerBoard) {
+        this.generatePlayerBoard = generatePlayerBoard;
         this.player1 = Player();
-        if (generatePlayerBoard) {
+        if (this.generatePlayerBoard) {
             this.player1.gameBoard.generateBoard();
         }
         this.player2 = AIPlayer();
