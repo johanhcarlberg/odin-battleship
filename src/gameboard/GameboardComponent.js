@@ -7,6 +7,7 @@ export class GameboardComponent {
         this.gameboard = player.gameBoard;
         this.hideShips = hideShips;
         this.gameboardItemClickCallback = gameboardItemClickCallback;
+        
         PubSub.subscribe('gameBoardChanged', (msg, gameboard) => {
             if (gameboard === this.gameboard) {
                 this.updateGameboardItems();
@@ -62,34 +63,37 @@ export class GameboardComponent {
                 }
             })
 
+            // Drag and drop event handlers for player gameboard
             if (!this.player.isAI) {
                 gameboardItem.addEventListener('dragover', (e) => {
                     e.preventDefault();
                 });
+
                 gameboardItem.addEventListener('dragenter', (e) => {
                     e.preventDefault();
                     gameboardItem.style.border ="1px solid #f00";
                 })
+
                 gameboardItem.addEventListener('dragleave', (e) => {
                     e.preventDefault();
                     gameboardItem.style.border = "";
                 })
+
                 gameboardItem.addEventListener('drop', (e) => {
                     e.preventDefault();
                     gameboardItem.style.border = "";
+                    // Gameboard position is stored as an attribute on 
+                    // gameboard item elements
                     const position = e.target.position;
                     const size = Number(e.dataTransfer.getData("text/plain"));
+
                     if (size) {
                         const coords = this.gameboard.getCoordsFromIndex(position);
-                        console.log(coords);
                         try {
-                            console.log('placing ship');
                             this.gameboard.placeShip(size, {x: coords[0], y: coords[1]});
-                            console.log('placed ship');
                             PubSub.publish('gameBoardChanged', this.gameboard);
                             PubSub.publish('shipsPlacedChanged');
                         } catch(e) {
-                            console.log(e);
                             return;
                         }
                     }
