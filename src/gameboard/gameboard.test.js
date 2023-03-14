@@ -189,8 +189,15 @@ test('hits return true, misses return false', () => {
 test('can reset board', () => {
     let gameBoard = GameboardFactory();
     let ship = gameBoard.placeShip(2, {x: 0, y: 0});
+    
     expect(gameBoard.getBoard()[0]).toEqual(ship);
+    gameBoard.receiveAttack(0, 0);
+    gameBoard.receiveAttack(0, 1);
+    gameBoard.generateBoard();
     gameBoard.resetBoard();
     expect(gameBoard.getBoard()[0]).not.toEqual(ship);
     expect(gameBoard.isAllSunk()).toBe(false);
+    expect(gameBoard.getMissedShots().length).toBe(0);
+    expect(gameBoard.getHits().length).toBe(0);
+    expect(gameBoard.getShipsToPlace().length).toBeGreaterThan(0);
 })

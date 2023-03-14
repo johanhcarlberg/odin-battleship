@@ -4,12 +4,12 @@ export const GameboardFactory = (boardLength = 10) => {
     const length = boardLength;
     const getLength = () => length;
 
-    const missedShots = [];
-    const hits = [];
+    let missedShots = [];
+    let hits = [];
     const getMissedShots = ()  => missedShots;
     const getHits = () => hits;
 
-    const shipsToPlace = [2, 2, 2, 3, 3, 4];
+    let shipsToPlace = [2, 2, 2, 3, 3, 4];
     const getShipsToPlace = () => shipsToPlace;
 
     const ships = [];
@@ -23,6 +23,9 @@ export const GameboardFactory = (boardLength = 10) => {
     const _setBoard = (newBoard) => board = newBoard;
     const resetBoard = () => {
         board = createBoard();
+        missedShots = [];
+        hits = [];
+        shipsToPlace = [2, 2, 2, 3, 3, 4];
     }
 
     const _getIndexFromCoord = (x,y) => {
@@ -205,6 +208,7 @@ export const GameboardFactory = (boardLength = 10) => {
         missExists,
         getLength,
         getShipsToPlace,
-        resetBoard
+        resetBoard,
+        isValidPosition
     }
 }
