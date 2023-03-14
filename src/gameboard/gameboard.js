@@ -122,6 +122,10 @@ export const GameboardFactory = (boardLength = 10) => {
     }
 
     const isAllSunk = () => {
+        if (isEmpty()) {
+            return false;
+        }
+
         for (const pos of board) {
             if(pos && pos.isSunk) {
                 if (!pos.isSunk()) {
@@ -174,6 +178,15 @@ export const GameboardFactory = (boardLength = 10) => {
             return false;
         }
 
+        return true;
+    }
+
+    const isEmpty = () => {
+        for (let item of board) {
+            if (item) {
+                return false;
+            }
+        }
         return true;
     }
 

@@ -103,6 +103,11 @@ test('check if multiple ships are sunk', () => {
     expect(gameBoard.isAllSunk()).toBe(true);
 })
 
+test('check if all ships are sunk when no ships exist', () => {
+    let gameBoard = GameboardFactory();
+    expect(gameBoard.isAllSunk()).toBe(false);
+})
+
 test('can generate a gameboard automatically', () => {
     let gameBoard = GameboardFactory(10);
     expect(gameBoard.generateBoard).toBeDefined();
@@ -187,4 +192,5 @@ test('can reset board', () => {
     expect(gameBoard.getBoard()[0]).toEqual(ship);
     gameBoard.resetBoard();
     expect(gameBoard.getBoard()[0]).not.toEqual(ship);
+    expect(gameBoard.isAllSunk()).toBe(false);
 })
