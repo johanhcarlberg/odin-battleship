@@ -16,9 +16,9 @@ export const Player = () => {
 }
 
 const isAIPlayer = (player = {}) => {
-    const performedAttacks = [];
+    let performedAttacks = [];
     const getPerformedAttacks = () => performedAttacks;
-    const queuedAttacks = [];
+    let queuedAttacks = [];
     const getQueuedAttacks = () => queuedAttacks;
     const isAI = true;
 
@@ -41,6 +41,7 @@ const isAIPlayer = (player = {}) => {
             const attack = queuedAttacks.shift();
             let x = attack[0];
             let y = attack[1];
+            performedAttacks.push([x,y]);
             return {x, y};
         }
         let x = Math.floor(Math.random() * player.gameBoard.getLength())
@@ -61,13 +62,19 @@ const isAIPlayer = (player = {}) => {
         queuedAttacks.push([x,y]);
     }
 
+    const reset = () => {
+        queuedAttacks = [];
+        performedAttacks = [];
+    }
+
     return {
         ...player,
         getNextAttack,
         getPerformedAttacks,
         isAI,
         getQueuedAttacks,
-        queueAttack
+        queueAttack,
+        reset,
     }
 }
 
