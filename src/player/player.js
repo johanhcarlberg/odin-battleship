@@ -36,6 +36,8 @@ const isAIPlayer = (player = {}) => {
         })
     }
 
+    // Gets next AI attack
+    // Gets attack from queue if the queue is not empty
     const getNextAttack = () => {
         if (queuedAttacks.length > 0) {
             const attack = queuedAttacks.shift();
@@ -44,6 +46,7 @@ const isAIPlayer = (player = {}) => {
             performedAttacks.push([x,y]);
             return {x, y};
         }
+
         let x = Math.floor(Math.random() * player.gameBoard.getLength())
         let y = Math.floor(Math.random() * player.gameBoard.getLength())
         
@@ -54,6 +57,7 @@ const isAIPlayer = (player = {}) => {
         return {x, y};
     }
 
+    // Queues an attack if it hasn't been performed and it isn't already in queue
     const queueAttack = (x, y) => {
         if (hasPerformedAttack([x,y]) || hasQueuedAttack([x,y])) {
             return;
