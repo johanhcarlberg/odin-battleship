@@ -28,17 +28,14 @@ export const GameboardFactory = (boardLength = 10) => {
         shipsToPlace = [2, 2, 2, 3, 3, 4];
     }
 
+    // Returns gameboard index from x,y coordinates
     const _getIndexFromCoord = (x,y) => {
         return (length * y) + x
     }
+
     const getPos = (x, y) => {
         const index = _getIndexFromCoord(x, y);
         return index;
-    }
-
-    const _setPos = (x, y, data) => {
-        const index = getPos(x, y);
-        index = data;
     }
 
     const hitExists = (pos) => {
@@ -57,11 +54,15 @@ export const GameboardFactory = (boardLength = 10) => {
         return containsMiss;
     }
 
+    // Handles receiving attacks on gameboard
+    // Returns true if attack hits, false if misses
+    // Throws if position argument is invalid
     const receiveAttack = (x, y) => {
         const pos = [x, y];
         if (!isValidPosition(pos)) {
             throw new Error(`Invalid position: ${pos}`);
         }
+
         if (hitExists(pos) || missExists(pos)) {
             return false;
         }
@@ -77,13 +78,12 @@ export const GameboardFactory = (boardLength = 10) => {
         }
     }
 
+    // Handles ship placement
+    // Returns ship object if ship can be placed
+    // Throws if position or size is invalid or if a ship already exists on the position
     const placeShip = (size, pos) => {
         if (pos.x == null || pos.y == null) {
             throw new Error('Invalid position argument');
-        }
-
-        if (!shipsToPlace.includes(size)) {
-            throw new Error('Ship size invalid or no more ships of size to place');
         }
 
         const x = pos.x;
@@ -109,6 +109,7 @@ export const GameboardFactory = (boardLength = 10) => {
         return ship;
     }
 
+    // Checks if a ship with given size can be placed on a given position
     const _isShipPositionValid = (size, pos) => {
         for (let i = 0; i < size; i++) {
             let x = pos.x + i;
@@ -139,6 +140,7 @@ export const GameboardFactory = (boardLength = 10) => {
         return true;
     }
 
+    // Places ships randomly on the board
     const generateBoard = () => {
         const shipsToCreate = Array.from(shipsToPlace);
         const shipsCreated = [];
